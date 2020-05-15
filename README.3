@@ -1,0 +1,25 @@
+	JPanel jpanelAdd = new JPanel();
+		jpanelAdd.add(new JLabel("商品id:"));
+		jpanelAdd.add(jtfAddCid = new JTextField(20));
+		jpanelAdd.add(new JLabel("商品名字:"));
+		jpanelAdd.add(jtfAddName = new JTextField(20));
+		jpanelAdd.add(new JLabel("销售价:"));
+		jpanelAdd.add(jtfAddPrice = new JTextField(20));
+		jpanelAdd.add(new JLabel("销售数量:"));
+		jpanelAdd.add(jtfAddNum = new JTextField(20));
+		jpanelAdd.add(jbAddSummit = new JButton("提交"));
+		jpanelAdd.add(jbAddCancel = new JButton("取消"));
+		jpanelAdd.setLayout(new GridLayout(7, 2, 25, 50));
+		jpanelAdd.setBorder(new TitledBorder("添加商品:"));
+
+ public void addSale(Connection con, String cid, String name, String price, String num) throws Exception {
+        String sql = "insert into t_sale values (?,?,?,?)";
+        PreparedStatement pm = con.prepareStatement(sql);
+        pm.setString(1, cid);
+        pm.setString(2, name);
+        pm.setString(3, price);
+        pm.setString(4, num);
+        pm.executeUpdate();
+        con.close();
+
+    }
