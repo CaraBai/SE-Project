@@ -1,0 +1,66 @@
+private void initFrame() throws Exception {
+
+		this.setTitle("小型超市管理系统");
+		JLabel jlWelcon = new JLabel("小型超市管理系统", JLabel.CENTER);
+		jlWelcon.setFont(new Font("Aharoni", Font.BOLD, 24));
+		JLabel jlHello = new JLabel();
+		jlHello.setHorizontalAlignment(JLabel.RIGHT);
+		jlHello.setText("       欢迎你： " + userName + "!");
+		jlHello.setForeground(Color.BLUE);
+		JPanel panel1 = new JPanel();
+		panel1.add(jlWelcon, BorderLayout.CENTER);
+		panel1.add(jlHello, BorderLayout.SOUTH);
+		this.add(panel1, BorderLayout.NORTH);
+
+		JPanel jpButtons = new JPanel();
+		jpButtons.add(jbCheckStudent = new JButton("查看用户信息"));
+		jpButtons.add(jbCheckCourse = new JButton("查看商品信息"));
+		jpButtons.add(jbCheckSc = new JButton("查看销售信息"));
+		jpButtons.add(jbExit = new JButton("退出"));
+		jpButtons.setLayout(new GridLayout(7, 1, 5, 50));
+		jpButtons.setBorder(new TitledBorder("主功能区："));
+
+		cardpanel = new JPanel(card);
+		cardpanel.add(new StudentPanel(), "Studentframe");
+		cardpanel.add(new CoursePanel(), "Courseframe");
+		cardpanel.add(new SalePanel(), "Saleframe");
+
+		this.add(cardpanel, BorderLayout.CENTER);
+		this.add(jpButtons, BorderLayout.WEST);
+
+		this.setSize(870, 660);
+		this.setResizable(false);
+
+
+		jbCheckStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				card.show(cardpanel, "Studentframe");
+			}
+		});
+		jbCheckSc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				card.show(cardpanel, "Saleframe");
+			}
+		});
+		jbCheckCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				card.show(cardpanel, "Courseframe");
+			}
+		});
+		
+
+		jbExit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(null, "您确定要退出吗?");
+				if (result == 0)
+					System.exit(0);
+
+			}
+		});
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+
+	}
