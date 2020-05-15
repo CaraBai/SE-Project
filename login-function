@@ -1,0 +1,32 @@
+private void login() {
+    String username = jtUserName.getText();
+    String password = new Sting(jpwPassword.getPasswod());
+    
+    
+    if (userName.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "用户名不能为空");
+        return;
+    }
+    if (password.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "密码不能为空");
+        return;
+        
+    }
+    User user = new User(userName, password);
+    try{
+       User currentUser = userDao.login(dbUtil.getCon(), user);
+       if (currentUser != null) {
+/          JOptionPane.showMessageDialog(null, "登录成功！");
+          this.diapose();
+          new ManagerFrame(currentUser.getUserName()).seVisible(true);
+       } else
+           JOptionPane.showMessageDialog(null, "登录失败，账号或密码错误");
+     } catch (Exception e1) {
+         e1.printStackTrace();
+         JOptionPane.showMessageDialog(null, "登录失败");
+     }
+}
+         
+           
+
+    
